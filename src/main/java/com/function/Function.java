@@ -30,10 +30,7 @@ public class Function {
     ) HttpRequestMessage<Optional<String>> request,
     final ExecutionContext context
   ) {
-    // Item list
-    context
-      .getLogger()
-      .info("Request body is: " + request.getBody().orElse(""));
+ 
 
     // Check request body
     if (!request.getBody().isPresent()) {
@@ -50,6 +47,9 @@ public class Function {
         "\"description\": \"" +
         body +
         "\"}";
+
+      context.getLogger().info("Log Function 2 Validacao JSON object: " + request.getBody().orElse(""));
+      
       return request
         .createResponseBuilder(HttpStatus.OK)
         .header("Content-Type", "application/json")
